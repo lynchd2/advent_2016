@@ -1,3 +1,5 @@
+# Part 1
+
 def bathroom_meow(input)
 	keys = [[1,2,3],[4,5,6],[7,8,9]]
 	start = [1,1]
@@ -39,3 +41,38 @@ bathroom_meow(input)
 #[1,2,3]
 #[4,5,6]
 #[7,8,9]
+
+
+#Part 2
+
+def bathroom_meow2(input)
+	keys = [[nil, nil, 1, nil, nil], [nil, 2, 3, 4, nil], [5,6,7,8,9],[nil, "A","B","C", nil], [nil, nil, "D", nil, nil]]
+	start = [3,0]
+	answer = []
+	input.split("\n").each do |line|
+		code = line.split("")
+		code.each do |movement|
+			if movement == "U"
+				unless start[0] == 0 || (keys[start[0] - 1][start[1]] == nil)
+					start[0] -= 1
+				end
+			elsif movement == "D"
+				unless start[0] == 4 || (keys[start[0] + 1][start[1]] == nil)
+					start[0] += 1
+				end
+			elsif movement == "L"
+				unless start[1] == 0 || (keys[start[0]][start[1] - 1] == nil)
+					start[1] -= 1
+				end
+			else
+				unless start[1] == 4 || (keys[start[0]][start[1] + 1] == nil)
+					start[1] += 1
+				end
+			end
+		end
+		answer << keys[start[0]][start[1]]
+	end
+	p answer.join("")
+end
+
+bathroom_meow2(input)
