@@ -1,8 +1,11 @@
 MAP_KEY = {}
-
+def add_to_list(list, coordinate)
+	distance = 
+	list[coordinate]
+end
 
 def shortest(input)
-	all_spots = {}
+	all_spots = []
 	coordinate = [0,0]
 	direction = "north"
 	input.split(", ").each do |b|
@@ -12,43 +15,45 @@ def shortest(input)
 		if r_or_l == "R"
 			if direction == "north"
 				direction = "east"
-				coordinate[0] += distance
+				distance.times {all_spots << [coordinate[0] += 1, coordinate[1]]}
 			elsif direction == "east"
 				direction = "south"
-				coordinate[1] -= distance
+				distance.times {all_spots << [coordinate[0], coordinate[1] -= 1]}
 			elsif direction == "south"
 				direction = "west"
-				coordinate[0] -= distance
+				distance.times {all_spots << [coordinate[0] -= 1, coordinate[1]]}
 			elsif direction == "west"
 				direction = "north"
-				coordinate[1] += distance
+				distance.times {all_spots << [coordinate[0], coordinate[1] += 1]}
 			else 
 				p "Failure"
 			end
 		elsif r_or_l == "L"
 			if direction == "north"
 				direction = "west"
-				coordinate[0] -= distance
+				distance.times {all_spots << [coordinate[0] -= 1, coordinate[1]]}
 			elsif direction == "west"
 				direction = "south"
-				coordinate[1] -= distance
+				distance.times {all_spots << [coordinate[0], coordinate[1] - 1]}
 			elsif direction == "south"
 				direction = "east"
-				coordinate[0] += distance
+				distance.times {all_spots << [coordinate[0] += 1, coordinate[1]]}
 			elsif direction == "east"
 				direction = "north"
-				coordinate[1] += distance
+				distance.times {all_spots << [coordinate[0], coordinate[1] += 1]}
 			else 
 				p "Failure"
 			end
 		end
-		if all_spots[coordinate]
-			p coordinate
-			all_spots[coordinate] += 1
-		else
-			all_spots[coordinate] = 0
-		end
+		# if all_spots[coordinate]
+		# 	coordinate
+		# 	all_spots[coordinate] += 1
+		# else
+		# 	all_spots[coordinate] = 0
+		# end
+		
 	end
+	p all_spots.detect{ |e| all_spots.count(e) > 1 }
 	p coordinate.inject(0) {|sum, value| sum += value.abs}
 end
 
