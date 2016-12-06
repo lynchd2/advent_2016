@@ -1,3 +1,28 @@
+#Alphabet
+ALPHABET = ("a".."z").to_a
+
+
+#Part 2 solution
+def room_name(letters_array, check_sum)
+	name = []
+	shift = check_sum.to_i
+	until shift <= 26
+		shift -= 26 
+	end
+	letters_array.each do |letters|
+		word = []
+		letters.split("").each do |letter|
+			new_index = ALPHABET.index(letter) + shift
+			if new_index >= 26
+				new_index -= 26
+			end
+			word << ALPHABET[new_index]
+		end
+		name << word.join("")
+	end
+	#Print check_sum of northpole is included in answer
+	p check_sum if name.include?("northpole")
+end
 
 def break_code
 	# Total checksum score
@@ -12,6 +37,7 @@ def break_code
 		if real_room?(letters, letters_to_check)
 			total_checksum += check_sum.to_i 
 		end
+		room_name(letters, check_sum)
 	end
 	p total_checksum
 end
