@@ -16,6 +16,7 @@ end
 
 #code1("reyedfim")
 
+
 def code2(input)
 	answer = "--------"
 	count = 0
@@ -36,5 +37,6 @@ def code2(input)
 	p answer
 end
 
-
-code2("reyedfim")
+t = Time.now
+code2("abc")
+p Time.now - t
